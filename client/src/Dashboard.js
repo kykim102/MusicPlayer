@@ -3,7 +3,6 @@ import useAuth from './useAuth';
 import TrackSearchResult from './TrackSearchResult';
 import Player from './Player';
 import MusicDetail from './MusicDetail';
-import { Container, Form } from 'react-bootstrap';
 import SpotifyWebApi from 'spotify-web-api-node';
 import axios from 'axios';
 
@@ -92,17 +91,15 @@ function Dashboard({ code }) {
 	);
 
 	return (
-		<Container
-			className="d-flex flex-column py-2"
-			style={{ height: '100vh' }}
-		>
-			<Form.Control
+		<div className="playerContainer">
+			<input
+				className="trackSearchBar"
 				type="search"
 				placeholder="Search Songs/Artists"
 				value={search}
 				onChange={(e) => setSearch(e.target.value)}
 			/>
-			<div className="flex-grow-1 my-2" style={{ overflowY: 'auto' }}>
+			<div className="searchedResult">
 				{searchResult.map((track) => (
 					<TrackSearchResult
 						track={track}
@@ -110,20 +107,12 @@ function Dashboard({ code }) {
 						chooseTrack={chooseTrack}
 					/>
 				))}
-				<div
-					className="h-100"
-					onClick={(e) => setShowDetail(!showDetail)}
-				>
+				<div onClick={() => setShowDetail(!showDetail)}>
 					{searchResult.length === 0 &&
 						(showDetail ? (
 							<MusicDetail playingTrack={playingTrack} />
 						) : (
-							<div
-								className="text-center h-100"
-								style={{ whiteSpace: 'pre' }}
-							>
-								{lyrics}
-							</div>
+							<div className="musicLyrics">{lyrics}</div>
 						))}
 				</div>
 			</div>
@@ -133,7 +122,7 @@ function Dashboard({ code }) {
 					trackUri={playingTrack ? playingTrack.uri : undefined}
 				/>
 			</div>
-		</Container>
+		</div>
 	);
 }
 

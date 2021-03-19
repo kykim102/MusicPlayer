@@ -16,6 +16,13 @@ function Player({ accessToken, trackUri }) {
 			}}
 			play={play}
 			uris={trackUri ? [ trackUri ] : []}
+			styles={{
+				bgColor: '#2cc440',
+				color: '#030303',
+				sliderColor: '#1cb954',
+				trackArtistColor: '#ccc',
+				trackNameColor: '#fff',
+			}}
 		/>
 	);
 }
