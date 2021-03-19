@@ -59,6 +59,12 @@ function Dashboard({ code }) {
 		setLyrics(res.data.lyrics);
 	};
 
+	const toggleDetail = () => {
+		if (lyrics !== '') {
+			setShowDetail(!showDetail);
+		}
+	};
+
 	useEffect(
 		() => {
 			if (!playingTrack) return;
@@ -107,7 +113,7 @@ function Dashboard({ code }) {
 						chooseTrack={chooseTrack}
 					/>
 				))}
-				<div onClick={() => setShowDetail(!showDetail)}>
+				<div onClick={() => toggleDetail()}>
 					{searchResult.length === 0 &&
 						(showDetail ? (
 							<MusicDetail playingTrack={playingTrack} />
