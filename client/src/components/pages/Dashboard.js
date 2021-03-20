@@ -52,7 +52,7 @@ const Dashboard = ({ code }) => {
 	};
 
 	const searchLyrics = async () => {
-		const res = await axios.get('http://localhost:3001/lyrics', {
+		const res = await axios.get('http://localhost:3001/api/lyrics', {
 			params: {
 				track: playingTrack.title,
 				artist: playingTrack.artist,
