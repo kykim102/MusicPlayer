@@ -8,7 +8,7 @@ const useAuth = (code) => {
 
 	const fetchUserInfo = async () => {
 		try {
-			const res = await axios.post('http://localhost:3001/login', {
+			const res = await axios.post('/login', {
 				code,
 			});
 			setAcessToken(res.data.accessToken);
@@ -23,7 +23,7 @@ const useAuth = (code) => {
 
 	const refreshUserToken = async () => {
 		try {
-			const res = await axios.post('http://localhost:3001/refresh', {
+			const res = await axios.post('/refresh', {
 				refreshToken,
 			});
 			setAcessToken(res.data.accessToken);
