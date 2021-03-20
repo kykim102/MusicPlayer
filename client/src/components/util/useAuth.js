@@ -8,7 +8,7 @@ const useAuth = (code) => {
 
 	const fetchUserInfo = async () => {
 		try {
-			const res = await axios.post('/login', {
+			const res = await axios.post('http://localhost:3001/login', {
 				code,
 			});
 			setAcessToken(res.data.accessToken);
@@ -18,12 +18,13 @@ const useAuth = (code) => {
 			window.history.pushState({}, null, '/');
 		} catch (e) {
 			window.location = '/';
+			console.log(e.message);
 		}
 	};
 
 	const refreshUserToken = async () => {
 		try {
-			const res = await axios.post('/refresh', {
+			const res = await axios.post('http://localhost:3001/refresh', {
 				refreshToken,
 			});
 			setAcessToken(res.data.accessToken);
@@ -33,7 +34,8 @@ const useAuth = (code) => {
 			// Removing info from url to public
 			window.history.pushState({}, null, '/');
 		} catch (e) {
-			window.location = '/';
+			console.log(e.message);
+			// window.location = '/dashboard';
 		}
 	};
 

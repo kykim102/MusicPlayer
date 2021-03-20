@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import useAuth from './useAuth';
-import TrackSearchResult from './TrackSearchResult';
-import Player from './Player';
-import MusicDetail from './MusicDetail';
-import SpotifyWebApi from 'spotify-web-api-node';
 import axios from 'axios';
+import SpotifyWebApi from 'spotify-web-api-node';
+
+import useAuth from '../util/useAuth';
+
+import MusicDetail from '../dashboard/MusicDetail';
+import TrackSearchResult from '../dashboard/TrackSearchResult';
+import Player from '../dashboard/Player';
 
 const spotifyApi = new SpotifyWebApi({
 	clientId: '0ed84cf0a5064c89920a71ef6ac2402a',
 });
 
-function Dashboard({ code }) {
+const Dashboard = ({ code }) => {
+	console.log(code);
 	const accessToken = useAuth(code);
 	const [ search, setSearch ] = useState('');
 	const [ searchResult, setSearchResult ] = useState([]);
@@ -130,6 +133,6 @@ function Dashboard({ code }) {
 			</div>
 		</div>
 	);
-}
+};
 
 export default Dashboard;
