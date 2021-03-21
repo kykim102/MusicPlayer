@@ -13,7 +13,6 @@ const spotifyApi = new SpotifyWebApi({
 });
 
 const Dashboard = ({ code }) => {
-	console.log(code);
 	const accessToken = useAuth(code);
 	const [ search, setSearch ] = useState('');
 	const [ searchResult, setSearchResult ] = useState([]);
@@ -52,14 +51,18 @@ const Dashboard = ({ code }) => {
 	};
 
 	const searchLyrics = async () => {
-		const res = await axios.get('http://localhost:3001/api/lyrics', {
-			params: {
-				track: playingTrack.title,
-				artist: playingTrack.artist,
-			},
-		});
+		try {
+			const res = await axios.get('/api/lyrics', {
+				params: {
+					track: playingTrack.title,
+					artist: playingTrack.artist,
+				},
+			});
 
-		setLyrics(res.data.lyrics);
+			setLyrics(res.data.lyrics);
+		} catch (e) {
+			console.log(e.message);
+		}
 	};
 
 	const toggleDetail = () => {

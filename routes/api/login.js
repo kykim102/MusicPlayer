@@ -1,10 +1,11 @@
 require('dotenv').config();
-const config = require('config');
 const express = require('express');
 const router = express.Router();
 const SpotifyWebApi = require('spotify-web-api-node');
 
 router.post('/', async (req, res) => {
+	console.log(req.body);
+	console.log(res.body);
 	const code = req.body.code;
 	const spotifyApi = new SpotifyWebApi({
 		redirectUri: process.env.REDIRECT_URI,

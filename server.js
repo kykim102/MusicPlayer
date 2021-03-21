@@ -6,9 +6,10 @@ const SpotifyWebApi = require('spotify-web-api-node');
 
 const app = express();
 app.use(cors());
-app.use(express.json({ extended: false }));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ extended: false }));
 
+// Spotify API route
 app.post('/refresh', async (req, res) => {
 	const refreshToken = req.body.refreshToken;
 	const spotifyApi = new SpotifyWebApi({
